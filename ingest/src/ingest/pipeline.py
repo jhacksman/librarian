@@ -78,7 +78,7 @@ class IngestPipeline:
 
         book_id = book_id or self.generate_book_id(file_path)
 
-        with LogContext(book_id=book_id, file=file_path.name):
+        with LogContext(logger, "ingest_book", book_id=book_id, file=file_path.name):
             logger.info(f"Starting ingestion for: {file_path.name}")
 
             logger.info("Step 1/5: Extracting content")

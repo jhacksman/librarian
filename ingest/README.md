@@ -18,10 +18,11 @@ A book ingestion system for the Hackerspace Librarian that processes DRM-free EP
 
 ## Hardware Requirements
 
-Designed for GB10 hardware (DGX Spark/ASUS Ascent GX10/Jetson Thor) with 64GB VRAM:
-- VLM (Qwen2.5-VL-72B Q4): ~40GB
-- LLM (Qwen2.5-32B Q4): ~18GB
+Designed for GB10 hardware (DGX Spark/ASUS Ascent GX10) with 128GB unified coherent memory:
+- VLM (Qwen2.5-VL-72B-Instruct-AWQ): ~40GB
+- LLM (Qwen2.5-72B-Instruct-AWQ): ~40GB
 - Embeddings (BGE-base-en-v1.5): ~0.5GB
+- System/KV cache overhead: ~20GB
 
 ## Installation
 
