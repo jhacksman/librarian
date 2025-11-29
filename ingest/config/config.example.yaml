@@ -1,0 +1,144 @@
+# Librarian Ingest Configuration
+# Copy this file to config.yaml and adjust for your environment
+
+# LLM Configuration (for text-based agents)
+llm:
+  # vLLM server endpoint
+  base_url: "http://localhost:8000/v1"
+  # Model name - must fit within VRAM budget
+  # Recommended: Qwen2.5-32B-Instruct Q4 (~18GB VRAM)
+  model: "Qwen/Qwen2.5-32B-Instruct"
+  # API key (if required by your vLLM setup)
+  api_key: "not-needed"
+  # Maximum tokens for generation
+  max_tokens: 4096
+  # Temperature for generation (lower = more deterministic)
+  temperature: 0.3
+  # Request timeout in seconds
+  timeout: 120
+  # Maximum concurrent requests
+  max_concurrent: 4
+
+# VLM Configuration (for image processing)
+vlm:
+  # vLLM server endpoint (can be same as LLM if using multimodal model)
+  base_url: "http://localhost:8001/v1"
+  # Model name - Qwen2.5-VL-72B Q4 (~40GB VRAM)
+  model: "Qwen/Qwen2.5-VL-72B-Instruct"
+  # API key (if required)
+  api_key: "not-needed"
+  # Maximum tokens for generation
+  max_tokens: 2048
+  # Temperature
+  temperature: 0.2
+  # Request timeout in seconds
+  timeout: 180
+
+# Embedding Configuration
+embedding:
+  # Model name for sentence-transformers
+  model: "BAAI/bge-base-en-v1.5"
+  # Device to use (cuda, cpu, or auto)
+  device: "auto"
+  # Batch size for embedding generation
+  batch_size: 32
+  # Normalize embeddings
+  normalize: true
+
+# Qdrant Configuration
+qdrant:
+  # Qdrant server URL
+  url: "http://localhost:6333"
+  # Collection name for books
+  collection_name: "librarian_books"
+  # Vector size (768 for BGE-base)
+  vector_size: 768
+  # Distance metric
+  distance: "Cosine"
+  # Enable sharding for scalability
+  shard_number: 2
+  # Replication factor
+  replication_factor: 1
+
+# Chunking Configuration
+chunking:
+  # Minimum chunk size in tokens
+  min_chunk_size: 500
+  # Maximum chunk size in tokens
+  max_chunk_size: 2000
+  # Overlap percentage (0.0 to 1.0)
+  overlap: 0.2
+  # Chunking strategy: "semantic" or "fixed"
+  strategy: "semantic"
+  # Separators for text splitting (in order of priority)
+  separators:
+    - "\n\n\n"
+    - "\n\n"
+    - "\n"
+    - ". "
+    - " "
+
+# Processing Configuration
+processing:
+  # Directory for temporary files
+  temp_dir: "/tmp/librarian_ingest"
+  # Directory for logs
+  log_dir: "logs"
+  # Log level: DEBUG, INFO, WARNING, ERROR
+  log_level: "INFO"
+  # Maximum retries for failed operations
+  max_retries: 3
+  # Retry delay in seconds
+  retry_delay: 5
+  # Save intermediate results for debugging
+  save_intermediate: false
+  # Intermediate results directory
+  intermediate_dir: "intermediate"
+
+# Agent Configuration
+agents:
+  # Enable/disable specific agents
+  enabled:
+    genre_tags: true
+    bibliography: true
+    book_overview: true
+    chapter_summary: true
+    key_quotes: true
+    themes: true
+    technical_concepts: true
+  # Agent-specific settings
+  genre_tags:
+    # Predefined genres/tags for classification
+    predefined_tags:
+      - "Information Security"
+      - "Python"
+      - "AI/Machine Learning"
+      - "Web Development"
+      - "Systems Programming"
+      - "Networking"
+      - "Databases"
+      - "DevOps"
+      - "Cryptography"
+      - "Reverse Engineering"
+      - "Game Development"
+      - "Mobile Development"
+      - "Cloud Computing"
+      - "Data Science"
+      - "Software Engineering"
+  chapter_summary:
+    # Maximum chapters to summarize (0 = all)
+    max_chapters: 0
+  key_quotes:
+    # Maximum quotes to extract per book
+    max_quotes: 20
+
+# Batch Processing Configuration
+batch:
+  # Maximum books to process in parallel
+  parallel_books: 2
+  # Checkpoint frequency (save progress every N books)
+  checkpoint_frequency: 10
+  # Resume from checkpoint if available
+  resume_from_checkpoint: true
+  # Checkpoint file path
+  checkpoint_file: "batch_checkpoint.json"
