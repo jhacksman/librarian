@@ -1,0 +1,3 @@
+# Minimal offline pilot; independent of the legacy LLM/Qdrant stack.
+pydantic==2.13.5
+pypdf==6.19.0

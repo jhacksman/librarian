@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f6f2">
+    <meta name="description" content="Your personal library. Read, organize, and explore your books with local AI.">
+    <title>Librarian — Your personal library</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <a class="brand" href="#library" aria-label="Librarian home">
+          <span class="brand-mark" aria-hidden="true">l.</span>
+          <span>Librarian<span class="brand-caption">A little more understanding.</span></span>
+        </a>
+        <p class="nav-label">WORKSPACE</p>
+        <nav id="navigation" class="navigation" aria-label="Workspace"></nav>
+        <div class="sidebar-note"><span class="note-rule"></span><p>A place for your books.<br>A way into your ideas.</p></div>
+        <div id="connection" class="connection" role="status"><span class="connection-dot"></span><span>Connecting to your library…</span></div>
+      </aside>
+      <div class="workspace">
+        <header class="topbar"><div id="breadcrumb" class="breadcrumb">Your workspace</div><div class="topbar-meta"><span class="local-dot" aria-hidden="true"></span> Your library, on your Spark</div></header>
+        <main id="main" class="main" tabindex="-1" aria-busy="true"><div class="loading-state"><span class="spinner" aria-hidden="true"></span><p>Opening your library…</p></div></main>
+        <footer class="workspace-footer"><span>Librarian</span><span>Read deeply. Connect the dots.</span></footer>
+      </div>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <noscript><p class="noscript">Librarian needs JavaScript enabled to browse your library and open the reader.</p></noscript>
+  </body>
+</html>

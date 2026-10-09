@@ -1,0 +1,21 @@
+{
+  "name": "librarian-local",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A private, single-machine ebook library with cited local AI",
+  "engines": { "node": ">=24.20.0 <25" },
+  "scripts": {
+    "start": "node src/server.mjs",
+    "test": "node --test test/*.test.mjs",
+    "import": "node src/cli.mjs import",
+    "embed": "node src/cli.mjs embed",
+    "status": "node src/cli.mjs status"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "1.0.10",
+    "htmlparser2": "12.0.0",
+    "pdfjs-dist": "6.4.299",
+    "yauzl": "3.4.0"
+  }
+}

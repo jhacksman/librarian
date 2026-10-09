@@ -1,22 +1,8 @@
-"""Librarian Ingest Module.
+"""Librarian ingestion; load optional service dependencies only when requested."""
 
-A book ingestion system that processes EPUBs/PDFs with an LLM committee
-and stores results in a Qdrant vector database.
-"""
+from importlib import import_module
 
 __version__ = "0.1.0"
-
-from ingest.config import IngestConfig
-from ingest.models import (
-    BookAnalysis,
-    BookDocument,
-    EmbeddedChunk,
-    ExtractedContent,
-    SearchResult,
-    TextChunk,
-)
-from ingest.pipeline import IngestPipeline
-
 __all__ = [
     "__version__",
     "IngestConfig",
@@ -28,3 +14,12 @@ __all__ = [
     "EmbeddedChunk",
     "SearchResult",
 ]
+
+
+def __getattr__(name: str):
+    if name not in __all__:
+        raise AttributeError(name)
+    module = {"IngestConfig": "config", "IngestPipeline": "pipeline"}.get(name, "models")
+    value = getattr(import_module(f"ingest.{module}"), name)
+    globals()[name] = value
+    return value

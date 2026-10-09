@@ -1,0 +1,394 @@
+{
+  "schema_version": 1,
+  "artifact_kind": "independently authored synthetic usability and evidence oracle",
+  "status": "provisional; awaiting critic, two skeptics and parent policy freeze",
+  "authored_date": "2026-10-04",
+  "source_snapshot_read": "20f2bb2c2cecb2969d37c69a95c541e44d164600",
+  "provenance": "Original fictional source text and user questions authored for this milestone. No private books, outside text, models or new dependencies. Existing service, web and evaluation sources were read to understand interfaces; this is not a blind or statistically representative benchmark.",
+  "execution_status": "No corpus was generated and no application, import, test, lint, build or benchmark was run while authoring this draft.",
+  "independence_rules": [
+    "Freeze the authored document text, questions, intended scopes and relevant source spans before candidate execution.",
+    "Do not derive relevant passages, expected no-match labels or answerability labels from application output.",
+    "Do not revise a question or label merely to make an observed retrieval result pass. Report discrepancies against the frozen oracle.",
+    "Edition labels below are author annotations, not an assumption that the current catalog stores edition metadata. Both PDFs intentionally have exactly the same title.",
+    "Resolve document labels to actual SHA-256 book identities after generating the synthetic files on Spark. Retain the generated file hashes and fixture manifest.",
+    "Use no background corpus. All authored nonblank pages and EPUB sections are short enough for one ordinary source chunk each.",
+    "Keep the existing frozen quality and lexical-heldout case files unchanged. Their outcomes remain separate from these new disclosed cases."
+  ],
+  "shared_expectations": {
+    "answer_mode": "evidence_only",
+    "generated_answer_expected": false,
+    "query_limit": 5,
+    "positive_result_membership": "Each listed relevant document/location must appear; no passage outside that exact relevant document/location set is expected. Require each authored quote as an unchanged contained source span.",
+    "ranking": "No relevance ordering is authored. Preserve actual service order and citation numbering when comparing HTTP, CLI and MCP behavior.",
+    "citations": "Every quote must resolve to the independently authored document and physical page or EPUB member, with correct source hash, chunk identity and Unicode character offsets. Check extracted fixture text against authored text before queries; do not silently rewrite labels if fixture extraction differs.",
+    "no_match": "Expected no-match means no matching evidence in the requested indexed-book scope. It must not trigger an automatic wider search or a claim about all knowledge outside that scope.",
+    "coverage": "Keep recorded PDF omissions, unknown EPUB omission information and unassessed extraction completeness distinct. Show scoped coverage even when no passages match.",
+    "identity": "Same-title books require distinct stable selection values derived from their full book identities. A title alone cannot identify an edition. Display labels may use bounded identity hints; never expose a local source path.",
+    "question_preservation": "Keep the submitted question, selected book identity and technical-token spelling visible and intact. Selection is explicit user scope, not an inferred edition or automatic newest-edition choice.",
+    "source_limitations": "The documents are fictional station manuals. Their measurements and procedures are synthetic examples, not factual advice."
+  },
+  "documents": [
+    {
+      "id": "station-2022",
+      "format": "pdf",
+      "title": "Station Logbook",
+      "author_edition_label": "2022 edition",
+      "pages": [
+        {
+          "physical_page": 1,
+          "kind": "text",
+          "text": "Edition 2022. The observation interval is 18 minutes. Record readings in the blue ledger."
+        },
+        {
+          "physical_page": 2,
+          "kind": "text",
+          "text": "The rain gauge uses the copper funnel. Keep the inlet above the splash rim."
+        },
+        {
+          "physical_page": 3,
+          "kind": "text",
+          "text": "Set --trace-log to record a diagnostic trail before a sensor check."
+        }
+      ],
+      "expected_recorded_pages_without_text": [],
+      "expected_nonblank_sections": 3
+    },
+    {
+      "id": "station-2026",
+      "format": "pdf",
+      "title": "Station Logbook",
+      "author_edition_label": "2026 edition",
+      "pages": [
+        {
+          "physical_page": 1,
+          "kind": "text",
+          "text": "Edition 2026. The observation interval is 42 minutes. Record readings in the green ledger."
+        },
+        {
+          "physical_page": 2,
+          "kind": "blank",
+          "text": "",
+          "author_note": "An intentionally blank physical page. Its omission is known; no unseen answer-bearing text is asserted."
+        },
+        {
+          "physical_page": 3,
+          "kind": "text",
+          "text": "The rain gauge uses the silver funnel. The rain gauge service life has not been measured."
+        },
+        {
+          "physical_page": 4,
+          "kind": "text",
+          "text": "The option --trace-logger rotates diagnostic files. Ordinary trace log notes are written on paper."
+        },
+        {
+          "physical_page": 5,
+          "kind": "text",
+          "text": "Call station::sample to collect one reading. Call station::sample_all for a full sweep."
+        }
+      ],
+      "expected_recorded_pages_without_text": [2],
+      "expected_nonblank_sections": 4
+    },
+    {
+      "id": "bench-notes",
+      "format": "epub",
+      "title": "Sensor Bench Notes",
+      "sections": [
+        {
+          "section": 1,
+          "epub_member": "s1.xhtml",
+          "text": "The bench serial label is SB-73. This label identifies the demonstration enclosure."
+        },
+        {
+          "section": 2,
+          "epub_member": "s2.xhtml",
+          "text": "Use station::sample_all to collect a full sweep. The words station sample are a bench label."
+        }
+      ],
+      "expected_page_omissions": "unknown",
+      "expected_nonblank_sections": 2
+    }
+  ],
+  "coverage_profiles": {
+    "library": {
+      "scope": "all_indexed",
+      "indexed_books": 3,
+      "expected_nonblank_sections": 9,
+      "reported_page_coverage_books": 2,
+      "unknown_page_coverage_books": 1,
+      "books_with_reported_omissions": 1,
+      "reported_pages_without_text": 1,
+      "completeness": "not_assessed"
+    },
+    "station-2022": {
+      "scope": "book",
+      "document": "station-2022",
+      "indexed_books": 1,
+      "page_omissions": "reported",
+      "pages_without_text": [],
+      "pages_without_text_count": 0,
+      "completeness": "not_assessed"
+    },
+    "station-2026": {
+      "scope": "book",
+      "document": "station-2026",
+      "indexed_books": 1,
+      "page_omissions": "reported",
+      "pages_without_text": [2],
+      "pages_without_text_count": 1,
+      "completeness": "not_assessed"
+    },
+    "bench-notes": {
+      "scope": "book",
+      "document": "bench-notes",
+      "indexed_books": 1,
+      "page_omissions": "unknown",
+      "pages_without_text": null,
+      "pages_without_text_count": null,
+      "completeness": "not_assessed"
+    }
+  },
+  "scenarios": [
+    {
+      "id": "conflicting-editions-before-choice",
+      "proposed_role": "scope regression gate",
+      "user_intent": "Find the observation interval before deciding which edition applies.",
+      "question": "What is the observation interval?",
+      "book_filter": null,
+      "expected_no_match": false,
+      "relevant": [
+        {"document": "station-2022", "physical_page": 1, "quote": "Edition 2022. The observation interval is 18 minutes."},
+        {"document": "station-2026", "physical_page": 1, "quote": "Edition 2026. The observation interval is 42 minutes."}
+      ],
+      "coverage_profile": "library",
+      "answerability": "Conflicting edition-specific values. Retrieval should expose both sources; it does not establish one universally applicable interval.",
+      "workflow_expectation": "The reader can distinguish the same-title source identities and explicitly choose either book. Do not silently prefer the latest-looking edition."
+    },
+    {
+      "id": "choose-2022-interval",
+      "proposed_role": "scope regression gate",
+      "user_intent": "Read the interval from the 2022 book identified in the preceding source evidence.",
+      "question": "What is the observation interval?",
+      "book_filter": "station-2022",
+      "expected_no_match": false,
+      "relevant": [
+        {"document": "station-2022", "physical_page": 1, "quote": "Edition 2022. The observation interval is 18 minutes."}
+      ],
+      "coverage_profile": "station-2022",
+      "answerability": "The selected source explicitly states 18 minutes. Return the source excerpt, not a generated answer.",
+      "workflow_expectation": "Retain the selected source identity and original question after submission; exclude the same-title 2026 source."
+    },
+    {
+      "id": "choose-2026-interval-with-coverage-warning",
+      "proposed_role": "scope regression gate",
+      "user_intent": "Read the corresponding interval from the other same-title edition.",
+      "question": "What is the observation interval?",
+      "book_filter": "station-2026",
+      "expected_no_match": false,
+      "relevant": [
+        {"document": "station-2026", "physical_page": 1, "quote": "Edition 2026. The observation interval is 42 minutes."}
+      ],
+      "coverage_profile": "station-2026",
+      "answerability": "The selected source explicitly states 42 minutes. Its unrelated blank page does not invalidate this exact quotation.",
+      "workflow_expectation": "Show the selected source and its recorded page-2 omission while preserving the existing completeness caveat."
+    },
+    {
+      "id": "selected-edition-miss-must-not-widen",
+      "proposed_role": "scope regression gate",
+      "user_intent": "Check whether the 2026 edition discusses the blue ledger mentioned by the older edition.",
+      "question": "blue ledger",
+      "book_filter": "station-2026",
+      "expected_no_match": true,
+      "relevant": [],
+      "outside_scope_counterexample": {"document": "station-2022", "physical_page": 1, "quote": "Record readings in the blue ledger."},
+      "coverage_profile": "station-2026",
+      "answerability": "No matching evidence in the selected edition. Do not substitute the old edition or claim that no book contains the phrase.",
+      "workflow_expectation": "Keep the selected book visible on the no-match page, with its scope warning and no automatic all-books fallback."
+    },
+    {
+      "id": "desired-answer-absent-everywhere",
+      "proposed_role": "scope regression gate",
+      "user_intent": "Look for a remote access passphrase that none of these books supplies.",
+      "question": "What is the remote access passphrase?",
+      "book_filter": null,
+      "expected_no_match": true,
+      "relevant": [],
+      "coverage_profile": "library",
+      "answerability": "The requested fact is absent from the authored corpus. Abstain without inventing a passphrase; recorded omissions do not imply that an answer exists on a blank page."
+    },
+    {
+      "id": "useful-hit-with-explicitly-unknown-answer",
+      "proposed_role": "scope regression gate",
+      "user_intent": "Find the rain gauge service life in the 2026 edition.",
+      "question": "What is the rain gauge service life?",
+      "book_filter": "station-2026",
+      "expected_no_match": false,
+      "relevant": [
+        {"document": "station-2026", "physical_page": 3, "quote": "The rain gauge service life has not been measured."}
+      ],
+      "coverage_profile": "station-2026",
+      "answerability": "Useful evidence explicitly says the quantity is unmeasured. A retrieved hit is not a numeric answer and must not lead to a fabricated duration."
+    },
+    {
+      "id": "exact-flag-across-editions",
+      "proposed_role": "scope and literal regression gate",
+      "user_intent": "Find the documented behavior of the exact --trace-log option.",
+      "question": "What does --trace-log do?",
+      "book_filter": null,
+      "expected_literals": ["--trace-log"],
+      "expected_no_match": false,
+      "relevant": [
+        {"document": "station-2022", "physical_page": 3, "quote": "Set --trace-log to record a diagnostic trail before a sensor check."}
+      ],
+      "forbidden_near_matches": [
+        {"document": "station-2026", "physical_page": 4, "reason": "--trace-logger is a longer token; ordinary trace log text is not the requested flag."}
+      ],
+      "coverage_profile": "library",
+      "answerability": "The exact option has useful cited evidence in the 2022 source. Preserve literal syntax and do not treat similar ordinary words as an equivalent option."
+    },
+    {
+      "id": "exact-flag-absent-in-selected-edition",
+      "proposed_role": "scope and literal regression gate",
+      "user_intent": "Check for --trace-log specifically within the 2026 source.",
+      "question": "--trace-log",
+      "book_filter": "station-2026",
+      "expected_literals": ["--trace-log"],
+      "expected_no_match": true,
+      "relevant": [],
+      "coverage_profile": "station-2026",
+      "answerability": "The selected book supplies only a longer option and ordinary words, not this exact flag. Do not match its token prefix or widen to 2022."
+    },
+    {
+      "id": "qualified-symbol-excludes-longer-name",
+      "proposed_role": "scope and literal regression gate",
+      "user_intent": "Find the operation named station::sample rather than the full-sweep variant.",
+      "question": "What does station::sample do?",
+      "book_filter": null,
+      "expected_literals": ["station::sample"],
+      "expected_no_match": false,
+      "relevant": [
+        {"document": "station-2026", "physical_page": 5, "quote": "Call station::sample to collect one reading."}
+      ],
+      "forbidden_near_matches": [
+        {"document": "bench-notes", "section": 2, "epub_member": "s2.xhtml", "reason": "station::sample_all and the ordinary words station sample are not the requested literal."}
+      ],
+      "coverage_profile": "library",
+      "answerability": "The cited sentence documents one reading. Extra surrounding text in the same source passage may discuss a different operation, but it must not replace the exact-token evidence."
+    },
+    {
+      "id": "selected-epub-with-unknown-page-coverage",
+      "proposed_role": "scope regression gate",
+      "user_intent": "Identify the bench enclosure from the selected notes book.",
+      "question": "What is the bench serial label?",
+      "book_filter": "bench-notes",
+      "expected_no_match": false,
+      "relevant": [
+        {"document": "bench-notes", "section": 1, "epub_member": "s1.xhtml", "physical_page": null, "quote": "The bench serial label is SB-73."}
+      ],
+      "coverage_profile": "bench-notes",
+      "answerability": "The cited EPUB span states the label. Page-omission information remains unknown; do not invent a physical page number or zero omitted pages."
+    },
+    {
+      "id": "natural-paraphrase-remains-an-independent-diagnostic",
+      "proposed_role": "diagnostic only; excluded from book-scope acceptance unless parent explicitly changes the approved retrieval scope",
+      "user_intent": "Ask about the observation interval using ordinary phrasing rather than the manual's exact words.",
+      "question": "How long should I wait between readings?",
+      "book_filter": "station-2026",
+      "expected_no_match": false,
+      "relevant": [
+        {"document": "station-2026", "physical_page": 1, "quote": "Edition 2026. The observation interval is 42 minutes."}
+      ],
+      "coverage_profile": "station-2026",
+      "answerability": "The selected source contains useful evidence for this intent, even if a lexical retriever fails to find it. This expected evidence is authored independently of current search behavior.",
+      "diagnostic_reporting": "Report an observed miss as a retrieval limitation. Do not relabel it a correct no-match, tune the query after seeing results, add a model, or imply semantic question answering. No runtime outcome has been observed."
+    },
+    {
+      "id": "citation-after-blank-physical-page",
+      "proposed_role": "scope and provenance regression gate",
+      "user_intent": "Find the funnel specified by the selected 2026 rain gauge instructions.",
+      "question": "What is the rain gauge funnel?",
+      "book_filter": "station-2026",
+      "expected_no_match": false,
+      "relevant": [
+        {"document": "station-2026", "physical_page": 3, "quote": "The rain gauge uses the silver funnel."}
+      ],
+      "outside_scope_counterexample": {"document": "station-2022", "physical_page": 2, "quote": "The rain gauge uses the copper funnel."},
+      "coverage_profile": "station-2026",
+      "answerability": "The selected edition explicitly identifies the silver funnel. Its citation must remain physical page 3 after the intentionally omitted page 2; do not renumber extracted pages or borrow the older source."
+    }
+  ],
+  "proposed_integrated_checks_after_contract_freeze": [
+    {
+      "id": "http-discover-and-change-book-scope",
+      "transport": "actual loopback HTTP with standard-library HTML parsing",
+      "checks": [
+        "Initial page exposes an explicit all-books choice and distinct selectable identities for both same-title PDFs, without local paths.",
+        "Submit the observation-interval question with each selected book identity and verify only that edition's authored excerpt and physical page.",
+        "Retain the question and selected identity after successful requests and display coverage for that scope.",
+        "Switch explicitly back to all books and require both conflicting authored passages; preserve service result order rather than authoring a BM25 order."
+      ]
+    },
+    {
+      "id": "http-filtered-miss-and-literal-integrity",
+      "transport": "actual loopback HTTP",
+      "checks": [
+        "Submit blue ledger scoped to station-2026; require no match despite an authored hit in station-2022.",
+        "Keep the selected book and its blank-page coverage visible after that miss.",
+        "Submit --trace-log scoped to station-2026; do not match --trace-logger, ordinary words or another edition.",
+        "A malformed selector value or repeated conflicting selector fields must not silently turn into a global search. Freeze exact rejection/status behavior before writing this test."
+      ]
+    },
+    {
+      "id": "http-citation-and-navigation-context",
+      "transport": "actual loopback HTTP",
+      "checks": [
+        "Require physical page 3 for the 2026 funnel, correct document identity, unchanged quote and source offsets.",
+        "Follow a direct passage link and verify the same source identity and exact citation, with its per-book omission note.",
+        "If retaining search scope on passage navigation is authorized, freeze its query/form contract and verify explicit selected identity rather than inferring scope from title."
+      ]
+    },
+    {
+      "id": "cli-existing-book-filter-parity",
+      "transport": "existing CLI ask --book-id with structured JSON and human text",
+      "checks": [
+        "Use the selected-2026 interval and selected-edition-miss scenarios as compact positive/negative checks.",
+        "Require exact structured response parity with the service, including scoped coverage, provenance and order.",
+        "Human text retains the no-match limitation and selected-source coverage; the test must not require a generated answer."
+      ]
+    },
+    {
+      "id": "mcp-existing-book-filter-parity",
+      "transport": "approved real SDK stdio auto and legacy modes",
+      "checks": [
+        "Use list_books to resolve distinct same-title book identities.",
+        "Call ask_library for selected-2026 interval, selected-edition miss and exact-flag collision miss.",
+        "Require structured/text JSON equality and exact service parity, including citations, abstention and scoped warnings.",
+        "Fetch one cited passage; require unchanged source hash, physical page and quote. Keep this a handful of calls per mode, not a new benchmark."
+      ]
+    },
+    {
+      "id": "read-only-and-evidence-retention",
+      "transport": "all requested interfaces",
+      "checks": [
+        "Hash the index before and after read-only scenario requests; require unchanged bytes.",
+        "Retain fixture source hashes, scenario IDs, selected book identities, observed excerpts/citations and actual returned warnings as compact synthetic evidence.",
+        "Keep proposed regression outcomes separate from the natural-paraphrase diagnostic and existing frozen quality gates.",
+        "Do not infer visual browser usability from HTML/HTTP assertions; report the scope of the observed checks accurately."
+      ]
+    }
+  ],
+  "fixture_implementation_notes_for_later_authorization": [
+    "Generate three tiny original books with the existing approved pypdf and ZIP-writing packages on Spark. ASCII PDF text avoids adding a font dependency.",
+    "Create station-2026 physical page 2 as a real blank page; never remove that page from the PDF or renumber later citations.",
+    "The existing evaluation writer can inform the file format, but quality_fixtures.build_corpus assumes all authored sections survive extraction and therefore cannot directly handle this blank-page document. Use a small dedicated builder or reuse writers only; do not relax the frozen evaluator or alter its case files.",
+    "Keep expected spans, page numbers, no-match labels and answerability judgments in this authored oracle. A source oracle may verify offsets against those texts after exact fixture extraction, but must not invent relevance labels from retrieved results.",
+    "No broader corpus, model, network source, schema change, parser recovery, reindex requirement or performance claim is implied by these scenarios."
+  ],
+  "contract_questions_for_parent_freeze": [
+    "How are same-title selection labels distinguished using bounded available catalog fields without pretending the catalog has an edition field?",
+    "What bounded catalog-selection behavior applies if a chosen book is beyond the first page, absent, malformed or repeated in a request? Avoid silent scope widening.",
+    "Which request and navigation paths retain selected identity and question, and what explicit behavior applies on validation errors?",
+    "Confirm the proposed eleven scope/provenance/literal cases as regression gates and the one independent paraphrase case as a separately reported diagnostic; do not expand retrieval logic without a separate finding and authorization."
+  ]
+}
