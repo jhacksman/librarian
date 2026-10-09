@@ -273,8 +273,10 @@ async function main() {
         assert.equal(quote.bookId, target.sha256); assert.equal(quote.sectionId, targetSection.id);
         assert.equal(quote.text, targetSection.text.slice(quote.locator.charStart, quote.locator.charEnd));
         await page.locator('[data-response-kind="source_excerpts"]').waitFor({state: 'visible'});
-        assert.match(await page.locator('.response-heading').textContent(), /Cited excerpts/);
-        assert.match(await page.locator('.answer-text').textContent(), /no answer has been generated/);
+        assert.match(await page.locator('.response-heading').textContent(), /Local answer unavailable/);
+        assert.equal(await page.locator('[data-response-kind="source_excerpts"]').getAttribute('data-generated-answer'), 'false');
+        assert.equal(await page.locator('[data-response-kind="source_excerpts"]').getAttribute('data-answer-status'), 'unavailable');
+        assert.equal(await page.locator('.answer-text').textContent(), answer.answer);
         const quoteLink = page.locator('[data-testid="excerpt-link"]');
         assert.equal(await quoteLink.locator('.citation-excerpt').textContent(), quote.text);
         assert.equal(await quoteLink.locator('.citation-excerpt').evaluate(el => getComputedStyle(el).whiteSpace), 'pre-wrap');
