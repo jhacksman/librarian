@@ -168,6 +168,11 @@ async function main() {
         await page.waitForFunction((expected) => document.querySelector('#main')?.getAttribute('aria-busy') === 'false'
           && document.querySelector('[data-testid="reader-content"]')?.getAttribute('data-section-id') === expected,
         sectionId, { timeout: UI_TIMEOUT });
+        // Original books are now the default view. This journey compares exact
+        // extracted text, so select that view through the actual reader control.
+        await page.locator('[data-testid="reader-content"][data-view-ready="true"]').waitFor({ state: 'visible' });
+        const extracted = page.getByRole('button', { name: 'Extracted text', exact: true });
+        if (await extracted.getAttribute('aria-pressed') !== 'true') await extracted.click();
         await page.locator(LOCATORS.reader).waitFor({ state: 'visible' });
         assert.equal(new URL(page.url()).hash.split('?')[0], base);
       };
