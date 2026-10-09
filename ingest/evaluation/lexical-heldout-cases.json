@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "provenance": "Original model-authored synthetic fixtures prepared independently and withheld from the implementation author until a candidate is frozen. No private books, external text, human-authored labels or statistically representative benchmark claims.",
+  "seed": 20261004,
+  "documents": [
+    {"id": "language-suffix", "format": "epub", "title": "Synthetic Language Signals", "sections": [
+      "The F# routine emits a silver pulse.",
+      "The F routine emits an amber pulse."
+    ]},
+    {"id": "switches", "format": "epub", "title": "Synthetic Stencil Switches", "sections": [
+      "The --dry-run flag previews the stencil job without changing tiles.",
+      "A dry run rehearses the stencil job before the final assembly.",
+      "The --dry-runner option selects the runner's rehearsal profile.",
+      "Use -q to suppress the test chime.",
+      "Use q as the test chime selector.",
+      "Use -qq to suppress both test chimes."
+    ]},
+    {"id": "scoped-names", "format": "epub", "title": "Synthetic Scoped Painting", "sections": [
+      "Call mesh::paint() to mark a violet tile.",
+      "The words mesh paint label a violet sample.",
+      "Call mesh::paint_layer to mark a complete layer."
+    ]},
+    {"id": "underscore-names", "format": "epub", "title": "Synthetic Scheduling Names", "sections": [
+      "Set retry_slot=5 before scheduling the simulated job.",
+      "A retry slot is a pause between simulated jobs.",
+      "The retry_slot_count variable stores the number of simulated slots."
+    ]},
+    {"id": "dotted-names", "format": "epub", "title": "Synthetic Queue Events", "sections": [
+      "When queue.ready fires, light the teal lamp.",
+      "The phrase queue ready labels a teal lamp checklist.",
+      "When queue.ready_now fires, light the white lamp.",
+      "The queue.reader object owns the test ledger."
+    ]},
+    {"id": "combined-symbols", "format": "epub", "title": "Synthetic Preview Recipe", "sections": [
+      "Use --dry-run with mesh::paint for a violet preview."
+    ]},
+    {"id": "manual-a", "format": "epub", "title": "Synthetic Startup Handbook", "sections": [
+      "Revision A: The startup delay is 14 ticks. The amber latch confirms readiness."
+    ]},
+    {"id": "manual-b", "format": "epub", "title": "Synthetic Startup Handbook", "sections": [
+      "Revision B: The startup delay is 28 ticks. The ivory latch confirms readiness."
+    ]}
+  ],
+  "queries": [
+    {"id": "suffix-preservation", "category": "language-suffix", "gate": false, "question": "F#", "expected_no_match": false, "relevant": [
+      {"document": "language-suffix", "section": 1, "quote": "The F# routine emits a silver pulse."}
+    ]},
+    {"id": "long-flag-collision", "category": "long-flag", "gate": false, "question": "--dry-run", "expected_no_match": false, "relevant": [
+      {"document": "switches", "section": 1, "quote": "The --dry-run flag previews the stencil job without changing tiles."},
+      {"document": "combined-symbols", "section": 1, "quote": "Use --dry-run with mesh::paint for a violet preview."}
+    ]},
+    {"id": "long-flag-extension", "category": "long-flag", "gate": false, "question": "--dry-runner", "expected_no_match": false, "relevant": [
+      {"document": "switches", "section": 3, "quote": "The --dry-runner option selects the runner's rehearsal profile."}
+    ]},
+    {"id": "short-flag-collision", "category": "short-flag", "gate": false, "question": "-q", "expected_no_match": false, "relevant": [
+      {"document": "switches", "section": 4, "quote": "Use -q to suppress the test chime."}
+    ]},
+    {"id": "short-flag-extension", "category": "short-flag", "gate": false, "question": "-qq", "expected_no_match": false, "relevant": [
+      {"document": "switches", "section": 6, "quote": "Use -qq to suppress both test chimes."}
+    ]},
+    {"id": "scope-delimiter-preservation", "category": "scoped-name", "gate": false, "question": "mesh::paint", "expected_no_match": false, "relevant": [
+      {"document": "scoped-names", "section": 1, "quote": "Call mesh::paint() to mark a violet tile."},
+      {"document": "combined-symbols", "section": 1, "quote": "Use --dry-run with mesh::paint for a violet preview."}
+    ]},
+    {"id": "scope-name-extension", "category": "scoped-name", "gate": false, "question": "mesh::paint_layer", "expected_no_match": false, "relevant": [
+      {"document": "scoped-names", "section": 3, "quote": "Call mesh::paint_layer to mark a complete layer."}
+    ]},
+    {"id": "technical-conjunction", "category": "technical-conjunction", "gate": false, "question": "--dry-run mesh::paint", "expected_no_match": false, "relevant": [
+      {"document": "combined-symbols", "section": 1, "quote": "Use --dry-run with mesh::paint for a violet preview."}
+    ]},
+    {"id": "underscore-assignment-boundary", "category": "underscore-identifier", "gate": false, "question": "retry_slot", "expected_no_match": false, "relevant": [
+      {"document": "underscore-names", "section": 1, "quote": "Set retry_slot=5 before scheduling the simulated job."}
+    ]},
+    {"id": "underscore-name-extension", "category": "underscore-identifier", "gate": false, "question": "retry_slot_count", "expected_no_match": false, "relevant": [
+      {"document": "underscore-names", "section": 3, "quote": "The retry_slot_count variable stores the number of simulated slots."}
+    ]},
+    {"id": "dot-preservation", "category": "dotted-identifier", "gate": false, "question": "queue.ready", "expected_no_match": false, "relevant": [
+      {"document": "dotted-names", "section": 1, "quote": "When queue.ready fires, light the teal lamp."}
+    ]},
+    {"id": "dotted-name-extension", "category": "dotted-identifier", "gate": false, "question": "queue.ready_now", "expected_no_match": false, "relevant": [
+      {"document": "dotted-names", "section": 3, "quote": "When queue.ready_now fires, light the white lamp."}
+    ]},
+    {"id": "dotted-prefix-near-miss", "category": "boundary-no-match", "gate": false, "question": "queue.read", "expected_no_match": true, "relevant": []},
+    {"id": "flag-prefix-near-miss", "category": "boundary-no-match", "gate": false, "question": "--dry", "expected_no_match": true, "relevant": []},
+    {"id": "ordinary-edition-collision", "category": "ordinary-word", "gate": true, "question": "startup delay", "expected_no_match": false, "relevant": [
+      {"document": "manual-a", "section": 1, "quote": "The startup delay is 14 ticks."},
+      {"document": "manual-b", "section": 1, "quote": "The startup delay is 28 ticks."}
+    ]},
+    {"id": "ordinary-filter-a", "category": "filter", "gate": true, "question": "startup delay", "book_filter": "manual-a", "expected_no_match": false, "relevant": [
+      {"document": "manual-a", "section": 1, "quote": "The startup delay is 14 ticks."}
+    ]},
+    {"id": "ordinary-filter-b", "category": "filter", "gate": true, "question": "startup delay", "book_filter": "manual-b", "expected_no_match": false, "relevant": [
+      {"document": "manual-b", "section": 1, "quote": "The startup delay is 28 ticks."}
+    ]},
+    {"id": "ordinary-filter-no-match", "category": "filter-no-match", "gate": true, "question": "amber latch", "book_filter": "manual-b", "expected_no_match": true, "relevant": []},
+    {"id": "ordinary-words-in-technical-section", "category": "ordinary-word", "gate": true, "question": "violet preview", "expected_no_match": false, "relevant": [
+      {"document": "combined-symbols", "section": 1, "quote": "Use --dry-run with mesh::paint for a violet preview."}
+    ]},
+    {"id": "ordinary-absent-vocabulary", "category": "no-match", "gate": true, "question": "saffron turbine", "expected_no_match": true, "relevant": []}
+  ]
+}

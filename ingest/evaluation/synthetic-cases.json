@@ -1,0 +1,17 @@
+{
+  "provenance": "Original synthetic test sentences authored for Librarian readiness; no licensed ebook content.",
+  "documents": [
+    {"id": "identity", "title": "Synthetic Identity Guide", "sections": ["A password manager stores unique credentials for every account. Password reuse increases risk.", "Store a salted password hash. A random salt makes equal passwords produce different hashes."]},
+    {"id": "network", "title": "Synthetic Network Guide", "sections": ["A firewall filters incoming network traffic. A deny rule blocks an unwanted connection.", "A network switch forwards frames within a local area network."]},
+    {"id": "patterns", "title": "Synthetic Pattern Guide", "sections": ["A regular expression describes a text pattern. Anchors match the start or end of a line.", "A parser builds a syntax tree from structured text. A grammar defines valid expressions."]}
+  ],
+  "queries": [
+    {"query": "password manager", "document": "identity", "section": 1},
+    {"query": "salt password", "document": "identity", "section": 2},
+    {"query": "firewall traffic", "document": "network", "section": 1},
+    {"query": "switch frames", "document": "network", "section": 2},
+    {"query": "regular expression", "document": "patterns", "section": 1},
+    {"query": "parser grammar", "document": "patterns", "section": 2},
+    {"query": "quasar spectroscopy", "document": null}
+  ]
+}

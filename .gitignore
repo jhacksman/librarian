@@ -1,0 +1,45 @@
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+.DS_Store
+# Private corpus and derived content must never be committed.
+ebooks/
+*.epub
+*.pdf
+*.sqlite*
+*.db
+pilot-output/
+intermediate/
+logs/
+
+ci-output/
+
+# JavaScript product runtime and private derived library.
+node_modules/
+app/data/
+app/.env
+*.mobi
+*.prc
+*.torrent
+
+# All runtime, library, evidence, and secret material stays outside source control.
+data/
+covers/
+embeddings/
+extracted-text/
+usercontent/
+runtime/
+evidence/
+artifacts/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.sqlite-*
+*.db-*
