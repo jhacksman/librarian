@@ -198,9 +198,10 @@ async function main() {
           assert.equal(input.question, QUESTION);
           const evidence = input.passages.find((item) => item.text.includes(BOOKS[0].sections[0].paragraph));
           assert.ok(evidence, 'Mock answer requires the actual recovered source passage');
-          record.referencedChunk = evidence.chunkId;
+          record.referencedCitation = evidence.citation;
           send({done: true, done_reason: 'stop', message: {content: JSON.stringify({abstain: false,
-            answer: `The amber lantern burns for exactly 42 minutes. [${evidence.citation}]`})}});
+            paragraphs: [{text: 'The amber lantern burns for exactly 42 minutes.',
+              support: [{citation: evidence.citation, quote: BOOKS[0].sections[0].paragraph}]}]})}});
         }
       } catch (error) {
         fixtureFailure = error; res.writeHead(500, {'content-type': 'application/json'}); res.end('{"error":"Recovery mock rejected request"}');
